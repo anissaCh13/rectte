@@ -25,6 +25,17 @@ jobs:
 
       - name: Set up CodeQL
         uses: github/codeql-action/init@v3
+        with:
+          languages: java
+
+      - name: Build project
+        run: |
+          cd back/recipe
+          ./mvnw clean install  # Or appropriate build command for your Java project
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
+        with:
+          category: java
+          
+          
