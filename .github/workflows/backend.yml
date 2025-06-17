@@ -3,22 +3,27 @@ name: CodeQL Analysis
 on:
   push:
     branches:
-      - main  # Set to your default branch (e.g., 'main' or 'master')
+      - main
   pull_request:
     branches:
-      - main  # Also run on PRs to the default branch
+      - main
 
 jobs:
   analyze:
     name: Analyze code with CodeQL
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up CodeQL
-      uses: github/codeql-action/init@v1
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  # Set the Java version for your project, e.g., '8', '11', '16'
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      - name: Set up CodeQL
+        uses: github/codeql-action/init@v1
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
