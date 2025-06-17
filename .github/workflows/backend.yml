@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '21'  # Set the Java version for your project, e.g., '8', '11', '16'
-          distribution: 'corretto'
+          distribution: 'adoptopenjdk'
 
       - name: Set up CodeQL
         uses: github/codeql-action/init@v1
