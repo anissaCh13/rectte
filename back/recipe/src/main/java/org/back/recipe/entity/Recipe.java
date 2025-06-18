@@ -24,7 +24,11 @@ public class Recipe {
   @Column(updatable = false, nullable = false)
   @Id
   private UUID id;
+
+  @Column(nullable = false, length = 50)
   private String title;
+
+  @Column(nullable = false, columnDefinition = "TEXT")
   private String description;
 
 }
