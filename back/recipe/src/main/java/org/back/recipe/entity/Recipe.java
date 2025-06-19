@@ -35,10 +35,12 @@ public class Recipe {
   @Column(nullable = false, length = 50)
   private String title;
 
-  @Column( columnDefinition = "TEXT")
+  @Column(columnDefinition = "TEXT")
   private String description;
 
-  @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
+  @OneToMany(mappedBy = "recipe",
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+      orphanRemoval = true)
   private List<Ingredient> ingredients;
 
 }

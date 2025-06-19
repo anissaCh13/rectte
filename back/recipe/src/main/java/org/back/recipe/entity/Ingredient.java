@@ -12,12 +12,14 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Builder
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -35,8 +37,10 @@ public class Ingredient {
   private String name;
 
   @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
   private Unit unit;
 
+  @Column(nullable = false)
   private Double quantity;
 
   @ManyToOne()

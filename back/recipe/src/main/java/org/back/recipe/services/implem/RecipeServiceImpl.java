@@ -4,7 +4,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.back.recipe.entity.Ingredient;
 import org.back.recipe.entity.Recipe;
-import org.back.recipe.model.CreatRecipeInput;
+import org.back.recipe.model.CreateRecipeInput;
+import org.back.recipe.model.CreateRecipeOutput;
 import org.back.recipe.model.RecipeDTO;
 import org.back.recipe.repository.RecipeRepository;
 import org.back.recipe.services.RecipeService;
@@ -23,14 +24,14 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   @Override
-  public Recipe createRecipe(CreatRecipeInput creatRecipeInput) {
+  public CreateRecipeOutput createRecipe(CreateRecipeInput createRecipeInput) {
     // Create the Recipe object first
     Recipe recipe = Recipe.builder()
-        .title(creatRecipeInput.title())
-        .description(creatRecipeInput.description())
+        .title(createRecipeInput.title())
+        .description(createRecipeInput.description())
         .build();
 
-    List<Ingredient> ingredients = creatRecipeInput.ingredients().stream()
+    List<Ingredient> ingredients = createRecipeInput.ingredients().stream()
         .map(ingredient -> Ingredient.builder()
             .name(ingredient.name())
             .unit(ingredient.unit())
@@ -43,6 +44,7 @@ public class RecipeServiceImpl implements RecipeService {
     recipe.setIngredients(ingredients);
 
     // Save the Recipe (Ingredients will be saved automatically due to CascadeType.PERSIST)
-    return recipeRepository.save(recipe);
+    Recipe savedRecipe = recipeRepository.save(recipe);
+    return new CreateRecipeOutput(savedRecipe.getId());
   }
 }
