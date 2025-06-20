@@ -1,12 +1,13 @@
 package org.back.recipe.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import java.util.List;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,31 +17,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Builder
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Recipe {
+public class Ingredient {
 
   @EqualsAndHashCode.Include
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @Column(updatable = false, nullable = false)
   @Id
-  private UUID id;
+  private UUID uuid;
 
   @Column(nullable = false, length = 50)
-  private String title;
+  private String name;
 
-  @Column(columnDefinition = "TEXT")
-  private String description;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private Unit unit;
 
-  @OneToMany(mappedBy = "recipe",
-      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-      orphanRemoval = true)
-  private List<Ingredient> ingredients;
+  @Column(nullable = false)
+  private Double quantity;
 
+  @ManyToOne()
+  @JoinColumn(nullable = false, name = "recipe_id")
+  private Recipe recipe;
 }
