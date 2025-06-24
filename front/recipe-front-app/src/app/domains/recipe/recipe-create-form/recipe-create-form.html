@@ -1,1 +1,59 @@
-<h1>New form</h1>
+<div class="row start-xs between-md middle-md">
+  <h1 class="col-md-8">Create Recipe</h1>
+  <button matButton="filled" (click)="saveRecipe()" type="button">
+    Save
+  </button>
+</div>
+<form>
+  <div class="row center-xs start-md">
+    <mat-form-field class="col-xs-12 col-md-8">
+      <mat-label>Title</mat-label>
+      <input matInput [formControl]="title">
+    </mat-form-field>
+  </div>
+
+  <div class="row center-xs start-md">
+    <mat-form-field class="col-xs-12 col-md-8">
+      <mat-label>Description</mat-label>
+      <textarea matInput [formControl]="description"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="row start-xs start-md middle-md">
+    <h3 class="col-md-3">Ingredients :</h3>
+    <button matButton="elevated" (click)="addIngredient()" type="button">
+      <mat-icon fontIcon="add"></mat-icon>
+      add ingredient
+    </button>
+  </div>
+  @for(ingredient of ingredients.controls; track ingredient){
+    <div class="row center-xs start-md middle-md">
+      <mat-form-field class="col-xs-12 col-md-4">
+        <mat-label>Name</mat-label>
+        <input matInput [formControl]="ingredient.controls.name">
+      </mat-form-field>
+      <mat-button-toggle-group class=" col-xs-12 col-md-3" name="fontStyle" aria-label="Font Style" [formControl]="ingredient.controls.unit">
+        <mat-button-toggle value="liter">liter</mat-button-toggle>
+        <mat-button-toggle value="kilogram">kg</mat-button-toggle>
+        <mat-button-toggle value="piece">piece</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field class="col-xs-12 col-md-4">
+        <mat-label>Quantity</mat-label>
+        <input matInput [formControl]="ingredient.controls.quantity">
+      </mat-form-field>
+      <button matMiniFab type="button" aria-label="Example icon button with a menu icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </div>
+  }
+
+  <div class="row start-xs start-md middle-md">
+    <h3 class="col-md-3">Instructions :</h3>
+    <button matButton="elevated"  type="button">
+      <mat-icon fontIcon="add"></mat-icon>
+      add instruction
+    </button>
+  </div>
+</form>
+
