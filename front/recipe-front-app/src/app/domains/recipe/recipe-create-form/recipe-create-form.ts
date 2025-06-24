@@ -1,18 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
+import { MatInput, MatLabel } from '@angular/material/input';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { CreateRecipeInput, Ingredient } from '../model/creat-recipe';
 import { RecipeApi } from '../service/recipe-api';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recipe-create-form',
   standalone: true,
   imports: [
-    MatFormField,
     MatLabel,
     MatInput,
     ReactiveFormsModule,
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonToggleGroup,
     MatButtonToggle,
     MatMiniFabButton,
+    MatFormFieldModule,
     HttpClientModule
   ],
   providers: [RecipeApi],
@@ -30,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class RecipeCreateForm {
 
   readonly #recipeApi = inject(RecipeApi);
+  readonly #snackBar = inject(MatSnackBar);
 
   readonly formGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -63,13 +66,30 @@ export class RecipeCreateForm {
     this.ingredients.push(ingredientForm);
   }
 
+  removeIngredient(index: number){
+    this.ingredients.removeAt(index)
+  }
+
   saveRecipe() {
+    if(this.formGroup.invalid){
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
     const data = {
-      title: this.title.value!,
+      title: this.title.value ?? '',
       description: this.description.value,
       ingredients: this.ingredients.value.map(({name, unit, quantity}) => ({name, unit, quantity}) satisfies Ingredient)
     } satisfies CreateRecipeInput;
-    this.#recipeApi.creatNewRecipe(data).subscribe();
+    this.#recipeApi.createNewRecipe(data).subscribe({
+      next:()=>{
+        this.#snackBar.open('creat success', '', {horizontalPosition: 'center', verticalPosition: 'top', duration: 2000, panelClass: ['success-snackbar']})
+      },
+      error: ()=>{
+        this.#snackBar.open('creat error', '', {horizontalPosition: 'center', verticalPosition: 'top', duration: 2000, panelClass: ['error-snackbar']})
+
+      }
+    });
   }
 
 }

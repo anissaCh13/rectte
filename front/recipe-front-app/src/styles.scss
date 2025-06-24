@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-
+@use '@angular/material' as mat;
+@use 'sass:map';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  .success-snackbar {
+    @include mat.snack-bar-overrides((
+      container-color: map.get(mat.$m2-light-green-palette, 400),
+      supporting-text-color: map.get(mat.$m2-light-green-palette, 50),
+    ));
+  }
+  .error-snackbar {
+    @include mat.snack-bar-overrides((
+      container-color: map.get(mat.$m2-red-palette, 400),
+      supporting-text-color: map.get(mat.$m2-red-palette, 50),
+    ));
+  }
+}
