@@ -1,4 +1,18 @@
 :host{
   display: flex;
   flex-direction: column;
+
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+
+  .gap{
+    gap: 2%;
+  }
+
+  .card-description{
+    height: 100px;
+  }
+
 }

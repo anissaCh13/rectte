@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @use 'sass:map';
+@use "primeicons/primeicons.css";
+@use "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -16,5 +21,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       container-color: map.get(mat.$m2-red-palette, 400),
       supporting-text-color: map.get(mat.$m2-red-palette, 50),
     ));
+  }
+}
+
+:host{
+  h1{
+
   }
 }

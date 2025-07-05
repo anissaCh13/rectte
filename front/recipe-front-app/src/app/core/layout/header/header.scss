@@ -1,20 +1,38 @@
-:host{
+:host {
   .custom-header {
-    background-color: #1e88e5; /* custom blue */
-    color: white;
 
-  }
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    z-index: 100000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 2%;
+      margin-right: 2%;
+      flex: 1;
 
-  .right-side-header{
-    display: flex;
-    flex-direction: row;
+      .logo{
+        display: flex;
+        align-items: center;
+        .title {
+          margin-left: 6%;
+        }
+      }
 
-    button{
-      color: white;
+
+      .right-side-header {
+        display: flex;
+        flex-direction: row;
+
+        button {
+          color: #000000
+        }
+      }
     }
+
   }
+
+
 }
