@@ -2,13 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Header } from './core/layout/header/header';
 import { Footer } from './core/layout/footer/footer';
 import { RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 import { PrimeNG } from 'primeng/config';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Header, Footer, RouterOutlet, ButtonModule],
+  imports: [Header, Footer, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
