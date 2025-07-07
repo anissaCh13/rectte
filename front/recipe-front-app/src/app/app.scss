@@ -1,5 +1,9 @@
 :host{
+  max-width: 100%;
   .main-content {
+    background-color: rgba(163, 163, 166, 0.22); /* custom blue */
     min-height: calc(100vh - 128px); /* Adjust for toolbar height */
+    display: flex;
+    justify-content: center;
   }
 }

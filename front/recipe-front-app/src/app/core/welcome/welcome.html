@@ -1,10 +1,87 @@
-<div>
-  <h1>Plan Your Meals with Ease</h1>
+<div class="flex flex-col gap-7">
+  <div class="flex flex-col">
+    <h2 class=" center text-3xl font-bold text-gray-900 mb-3">Gérez vos recettes avec l'intelligence artificielle</h2>
+    <p class="center ">Ajoutez vos recettes, obtenez des suggestions personnalisées et créez vos listes de courses
+      automatiquement</p>
+  </div>
+
+  <div class="center gap-4">
+    <p-button label="Ajouter une recette" routerLink="/recipe/create" icon="pi pi-plus"/>
+    <p-button label="Suggestions IA" icon="pi pi-lightbulb"/>
+  </div>
+
+  <div class="center gap-5 mt-6">
+    <p-card [style]="{ width: '15rem', overflow: 'hidden' }">
+      <ng-template #header>
+      </ng-template>
+      <ng-template #title> Mes Recettes</ng-template>
+      <ng-template #subtitle>Gérez votre collection de recettes personnelles</ng-template>
+      <p class="card-description">
+        Ajoutez, modifiez et organisez toutes vos recettes favorites en un seul endroit.
+      </p>
+      <ng-template #footer>
+        <p-button label="Voir mes recettes" class="w-full" styleClass="w-full"/>
+      </ng-template>
+    </p-card>
+    <p-card [style]="{ width: '15rem', overflow: 'hidden' }">
+      <ng-template #header>
+      </ng-template>
+      <ng-template #title> Ingrédients</ng-template>
+      <ng-template #subtitle> Gérez votre inventaire d'ingrédients</ng-template>
+      <p class="card-description">
+        Suivez vos ingrédients disponibles et recevez des alertes pour les stocks faibles.
+      </p>
+      <ng-template #footer>
+        <p-button label="Gérer les ingrédients" class="w-full" styleClass="w-full"/>
+      </ng-template>
+    </p-card>
+    <p-card [style]="{ width: '15rem', overflow: 'hidden' }">
+      <ng-template #header>
+      </ng-template>
+      <ng-template #title> Liste de courses</ng-template>
+      <ng-template #subtitle> Générez automatiquement vos listes de courses</ng-template>
+      <p class="card-description">
+        Créez des listes de courses intelligentes basées sur vos recettes planifiées.
+      </p>
+      <ng-template #footer>
+        <p-button label="Voir la liste" class="w-full" styleClass="w-full"/>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div class="center mt-9 mb-5">
+    <p-card [style]="{ width: '60rem', overflow: 'hidden' }">
+
+      <ng-template #title> Activité récente</ng-template>
+      <ng-template #subtitle> Vos dernières actions sur l'application</ng-template>
+      <div>
+        <div class="space-y-4">
+          <div class="flex items-center space-x-4">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <div class="flex-1">
+              <p class="text-sm font-medium">Recette "Pasta Carbonara" ajoutée</p>
+              <p class="text-xs text-gray-500">Il y a 2 heures</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div class="flex-1">
+              <p class="text-sm font-medium">Liste de courses générée</p>
+              <p class="text-xs text-gray-500">Il y a 1 jour</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <div class="flex-1">
+              <p class="text-sm font-medium">3 nouvelles suggestions IA reçues</p>
+              <p class="text-xs text-gray-500">Il y a 2 jours</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </p-card>
+  </div>
 </div>
-<div>
-  <p>Organize your recipes and schedule weekly meals in one place.</p>
-</div>
-<div>
-  <a matButton="filled" routerLink="/recipe/create"> Get Started</a>
-</div>
+
 

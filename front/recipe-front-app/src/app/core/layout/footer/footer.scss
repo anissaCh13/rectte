@@ -1,7 +1,9 @@
 :host{
   .footer {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     justify-content: center;
-    background-color: #1e88e5; /* custom blue */
-    color: white;
   }
 }

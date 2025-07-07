@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Header } from './core/layout/header/header';
 import { Footer } from './core/layout/footer/footer';
 import { RouterOutlet } from '@angular/router';
+import { PrimeNG } from 'primeng/config';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ Header, Footer, RouterOutlet],
+  imports: [Header, Footer, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class App {
+export class App implements OnInit{
+  readonly #primeng= inject(PrimeNG);
   protected title = 'recipe-front-app-anissa';
+
+  ngOnInit() {
+    this.#primeng.ripple.set(true);
+  }
 }

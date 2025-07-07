@@ -1,7 +1,8 @@
 export interface CreateRecipeInput {
   title: string,
   description: string | null,
-  ingredients: Ingredient[]
+  ingredients: Ingredient[],
+  instruction?: string[]
 }
 
 export interface Ingredient {

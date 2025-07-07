@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { Button } from 'primeng/button';
+import { Card } from 'primeng/card';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
   imports: [
-    MatButton,
-    RouterLink
+    RouterLink,
+    Button,
+    Card
   ],
   templateUrl: './welcome.html',
   styleUrl: './welcome.scss'
